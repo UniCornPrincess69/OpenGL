@@ -133,6 +133,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ambient.cpp" />
+    <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
@@ -141,6 +143,8 @@
     <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ambient.h" />
+    <ClInclude Include="DataManager.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="ErrorType.h" />
@@ -149,6 +153,12 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Viewport.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\Shader\AmbientFragment.glsl" />
+    <None Include="Resource Files\Shader\AmbientVertex.glsl" />
+    <None Include="Resource Files\Shader\DefaultFragment.glsl" />
+    <None Include="Resource Files\Shader\DefaultVertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

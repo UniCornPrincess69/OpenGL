@@ -18,6 +18,8 @@
 
 #define GET_ARR_LENGTH(arr, type) (sizeof(arr) / sizeof(type))
 
+#define GET_ARR_PTR_LENGTH(ptr) (sizeof(ptr)/sizeof(ptr[0]))
+
 #define PROVE_RESULT(x)	\
 {						\
 	if(x != 0) return x;\

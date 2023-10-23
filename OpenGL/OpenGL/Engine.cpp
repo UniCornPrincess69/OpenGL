@@ -5,15 +5,26 @@
 
 int CEngine::Initialize(void)
 {
+	if (m_pDataManager == nullptr) return static_cast<int>(ErrorType::ET_DATA_MANAGER_INIT_FAILED);
+	std::string szVertexShader = m_pDataManager->ReadFile("Resource Files/Shader/DefaultVertex.glsl");
+	std::string szFragmentShader = m_pDataManager->ReadFile("Resource Files/Shader/DefaultFragment.glsl");
+
+	if (m_pDataManager == nullptr) return static_cast<int>(ErrorType::ET_DATA_MANAGER_INIT_FAILED);
+	std::string szAmbientVertexShader = m_pDataManager->ReadFile("Resource Files/Shader/AmbientVertex.glsl");
+	std::string szAmbientFragmentShader = m_pDataManager->ReadFile("Resource Files/Shader/AmbientFragment.glsl");
+
 	if (m_pViewport == nullptr) m_pViewport = new CViewport(M_I_WIDTH, M_I_HEIGHT, M_I_MINOR, M_I_MAJOR, M_S_NAME, M_F_RED, M_F_GREEN, M_F_BLUE, M_F_ALPHA);
 	if (m_pViewport != nullptr) PROVE_RESULT(m_pViewport->Initialize());
     
 	//Material
-	if (m_pMaterial == nullptr) m_pMaterial = new CMaterial();
-	if (m_pMaterial != nullptr) PROVE_RESULT(m_pMaterial->Initialize());
+	//if (m_pMaterial == nullptr) m_pMaterial = new CMaterial(szVertexShader.c_str(), szFragmentShader.c_str());
+	if (m_pAmbient != nullptr) m_pAmbient = new CAmbient(szAmbientVertexShader.c_str(), szAmbientFragmentShader.c_str());
+	//if (m_pMaterial != nullptr) PROVE_RESULT(m_pMaterial->Initialize());
+	if (m_pAmbient != nullptr) m_pAmbient->SetLightColor(glm::vec3(0.8f, 0.2f, 0.5f));
+	if (m_pAmbient != nullptr) PROVE_RESULT(m_pAmbient->Initialize());
 
 	// Mesh
-	if (m_pMesh == nullptr) m_pMesh = new CMesh();
+	if (m_pMesh == nullptr) m_pMesh = new CMesh(m_pVertices);
 	if (m_pMesh != nullptr) PROVE_RESULT(m_pMesh->Initialize());
 
     return 0;
@@ -23,12 +34,13 @@ int CEngine::Run(void)
 {
 	while (!glfwWindowShouldClose(m_pViewport->GetWindow()))
 	{
-		
 		if (m_pViewport != nullptr) PROVE_RESULT(m_pViewport->Update());
-		if (m_pMaterial != nullptr) PROVE_RESULT(m_pMaterial->Update());
+		//if (m_pMaterial != nullptr) PROVE_RESULT(m_pMaterial->Update());
+		if (m_pAmbient != nullptr) PROVE_RESULT(m_pAmbient->Update());
 		if (m_pMesh != nullptr) PROVE_RESULT(m_pMesh->Update());
 		if (m_pViewport != nullptr) PROVE_RESULT(m_pViewport->Draw());
-		if (m_pMaterial != nullptr) PROVE_RESULT(m_pMaterial->Draw());
+		//if (m_pMaterial != nullptr) PROVE_RESULT(m_pMaterial->Draw());
+		if (m_pAmbient != nullptr) PROVE_RESULT(m_pAmbient->Draw());
 		if (m_pMesh != nullptr) PROVE_RESULT(m_pMesh->Draw());
 
 
@@ -41,6 +53,7 @@ int CEngine::Run(void)
 void CEngine::Finalize(void)
 {
 	FINALIZE_DELETE(m_pMesh);
-	FINALIZE_DELETE(m_pMaterial);
+	FINALIZE_DELETE(m_pAmbient);
+	//FINALIZE_DELETE(m_pMaterial);
 	FINALIZE_DELETE(m_pViewport);
 }
