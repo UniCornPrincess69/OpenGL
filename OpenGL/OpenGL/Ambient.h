@@ -6,8 +6,8 @@ class CAmbient :
     public CMaterial
 {
 public:
-	inline CAmbient(const char* a_szVertexShader, const char* a_szFragmentShader)
-		: CMaterial(a_szVertexShader, a_szFragmentShader)
+	inline CAmbient(CDataManager* a_pDataManager, const char* a_szVertexShader, const char* a_szFragmentShader)
+		: CMaterial(a_pDataManager, a_szVertexShader, a_szFragmentShader)
 	{}
 
 	inline void SetLightColor(const glm::vec3& a_lightColor) { m_lightColor = a_lightColor; }

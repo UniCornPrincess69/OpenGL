@@ -16,6 +16,26 @@ void ProcessInput(GLFWwindow* a_pWindow)
 	{
 		glfwSetWindowShouldClose(a_pWindow, true);
 	}
+
+	/*if (glfwGetKey(a_pWindow, GLFW_KEY_W) == GLFW_PRESS)
+	{
+		if (m_pInputW != nullptr) m_pInputW();
+	}
+
+	if (glfwGetKey(a_pWindow, GLFW_KEY_A) == GLFW_PRESS)
+	{
+		if (m_pInputA != nullptr) m_pInputA();
+	}
+
+	if (glfwGetKey(a_pWindow, GLFW_KEY_S) == GLFW_PRESS)
+	{
+		if (m_pInputS != nullptr) m_pInputS();
+	}
+
+	if (glfwGetKey(a_pWindow, GLFW_KEY_D) == GLFW_PRESS)
+	{
+		if (m_pInputD != nullptr) m_pInputD();
+	}*/
 }
 
 const int CViewport::Initialize(void)

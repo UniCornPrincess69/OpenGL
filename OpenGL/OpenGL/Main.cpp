@@ -2,7 +2,7 @@
 #include "DataManager.h"
 
 
-
+//TODO: Marcus nochmal wegen uniform bei Shadern ansprechen. Wird automatisch drauf zugegriffen?
 int main(int a_iArgV, const char* a_argsC[])
 {
 	CDataManager* pData = new CDataManager();

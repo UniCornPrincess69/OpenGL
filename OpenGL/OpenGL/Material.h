@@ -1,14 +1,20 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 #include "Object.h"
+#include "DataManager.h"
 
 class CMaterial : public IObject
 {
 public:
-	CMaterial(const char* a_szVertexShader, const char* a_szFragmentShader)
-		: m_szVertexShader{a_szVertexShader}, m_szFragmentShader{a_szFragmentShader}, m_pShaderProgram(new unsigned(M_I_EMPTY))
-	{}
-protected:
+	inline CMaterial(CDataManager* a_pDataManager, const char* a_szVertexShader, const char* a_szFragmentShader)
+		: m_pDataManager{a_pDataManager}, m_pShaderProgram(new unsigned(M_I_EMPTY))
+	{
+		if (m_pDataManager == nullptr) return;
+		m_szVertexShader = m_pDataManager->ReadFile(a_szVertexShader);
+		m_szFragmentShader = m_pDataManager->ReadFile(a_szFragmentShader);
+
+	}
+public:
 	unsigned* GetShaderProgram(void) { return m_pShaderProgram; }
 
 public:
@@ -21,8 +27,10 @@ public:
 private:
 	const int M_I_EMPTY = 0;
 
-	const char* m_szVertexShader = "";
-	const char* m_szFragmentShader = "";
+	CDataManager* m_pDataManager = nullptr;
+
+	std::string m_szVertexShader = "";
+	std::string m_szFragmentShader = "";
 
 	unsigned* m_pShaderProgram = nullptr;
 

@@ -7,20 +7,28 @@
 const int CMesh::Initialize(void)
 {
 
-	glGenVertexArrays(1, m_pVAO);
-	glGenBuffers(1, m_pVBO);
+	glGenVertexArrays(M_I_BUFFER_SIZE, m_pVBO);
+	glBindVertexArray(*m_pVBO);
 
-	glBindVertexArray(*m_pVAO);
 
+	glGenBuffers(M_I_BUFFER_SIZE, m_pVBO);
 	glBindBuffer(GL_ARRAY_BUFFER, *m_pVBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(m_pVertices) * (sizeof(glm::vec3) * m_pVertices.size()), &m_pVertices[0], GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
+	glGenBuffers(M_I_BUFFER_SIZE, m_pEBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *m_pEBO);
+
+	glBufferData(GL_ARRAY_BUFFER, (sizeof(Vertex) * m_vertices.size()), &m_vertices[0], GL_STATIC_DRAW);
+
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, (sizeof(unsigned) * m_indices.size()), &m_indices.front(), GL_STATIC_DRAW);
+	
+	glVertexAttribPointer(M_I_POSITION_IDX, GetPositionNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY));
+	glEnableVertexAttribArray(M_I_POSITION_IDX);
+
+	glVertexAttribPointer(M_I_COLOR_IDX, GetColorNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(GetPositionSize()));
+	glEnableVertexAttribArray(M_I_COLOR_IDX);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	glBindVertexArray(0);
 
 
     
@@ -34,15 +42,18 @@ const int CMesh::Update(void)
 
 const int CMesh::Draw(void)
 {
-	glBindVertexArray(*m_pVAO);
-	glDrawArrays(GL_TRIANGLES, 0, 9);
+	glBindVertexArray(*m_pVBO);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *m_pEBO);
+
+	glDrawArrays(GL_TRIANGLES, M_I_POSITION_IDX, m_vertices.size());
+	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)M_I_EMPTY);
 
 	return 0;
 }
 
 void CMesh::Finalize(void)
 {
-	glDeleteVertexArrays(1, m_pVAO);
-	glDeleteBuffers(1, m_pVBO);
+	if (m_pEBO != nullptr) glDeleteBuffers(M_I_BUFFER_SIZE, m_pEBO);
+	if (m_pVBO != nullptr) glDeleteVertexArrays(M_I_BUFFER_SIZE, m_pVBO);
 
 }

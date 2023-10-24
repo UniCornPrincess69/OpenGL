@@ -8,6 +8,7 @@
 #include "Utils.h"
 #include "DataManager.h"
 #include "Ambient.h"
+#include "Camera.h"
 
 class CEngine
 {
@@ -34,39 +35,37 @@ private:
 
 	const char* M_S_NAME = "Unicorn Engine";
 
-	CDataManager* m_pDataManager = nullptr;
-	CViewport* m_pViewport = nullptr;
-	//CMaterial* m_pMaterial = nullptr;
-	CAmbient* m_pAmbient = nullptr;
-	CMesh* m_pMesh = nullptr;
 
-	std::vector<glm::vec3> m_pVertices = std::vector<glm::vec3> {
-			glm::vec3(- 0.9f, -1.0f, 0.0f), //links
-			glm::vec3(0.0f, -1.0f, 0.0f),	//rechts
-			glm::vec3(-0.45f, 0.0f, 0.0f),	//oben
+	std::vector<Vertex> m_vertices = std::vector<Vertex> {
+			//Vertex{glm::vec3(-0.9f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)}, //links
+			//Vertex{glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},	//rechts
+			//Vertex{glm::vec3(-0.45f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},	//oben
+			//
+			//Vertex{glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},
+			//Vertex{glm::vec3(0.9f, -1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},
+			//Vertex{glm::vec3(0.45f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},
+			//
+			//Vertex{glm::vec3(-0.45f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},
+			//Vertex{glm::vec3(0.45f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},
+			//Vertex{glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)}
 
-			glm::vec3(0.0f, -1.0f, 0.0f),
-			glm::vec3(0.9f, -1.0f, 0.0f),
-			glm::vec3(0.45f, 0.0f, 0.0f),
-
-			glm::vec3(-0.45f, 0.0f, 0.0f),
-			glm::vec3(0.45f, 0.0f, 0.0f),
-			glm::vec3(0.0f, 1.0f, 0.0f)
+			Vertex{glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f)},
+			Vertex{glm::vec3(0.5f, -0.5f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f)},
+			Vertex{glm::vec3(-0.5f, 0.5f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f)},
+			Vertex{glm::vec3(0.5f, 0.5f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)}
 	};
 
-	const char* m_szVertexShader = "#version 330 core\n"
-		"layout (location = 0) in vec3 aPos;\n"
-		"void main()\n"
-		"{\n"
-		"	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-		"}\n\0";
+	std::vector<unsigned> m_indices = std::vector<unsigned>{
+		0, 1, 2,
+		2, 1, 3,
+	};
 
-	const char* m_szFragmentShader = "#version 330 core\n"
-		"out vec4 FragColor;\n"
-		"void main()\n"
-		"{\n"
-		"	FragColor = vec4(0.8f, 1.0f, 0.5f, 0.1f);\n"
-		"}\n\0";
+	CDataManager* m_pDataManager = nullptr;
+	CViewport* m_pViewport = nullptr;
+	CMaterial* m_pMaterial = nullptr;
+	//CAmbient* m_pAmbient = nullptr;
+	CMesh* m_pMesh = nullptr;
+	CCamera* m_pCamera = nullptr;
 };
 
 #endif // !ENGINE_H

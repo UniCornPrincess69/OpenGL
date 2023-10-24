@@ -9,10 +9,13 @@
 const int CMaterial::Initialize(void)
 {
 	//Material
+	const char* szVertexShader = m_szVertexShader.c_str();
+	const char* szFragmentShader = m_szFragmentShader.c_str();
+
 
 	//Vertex Shader
 	unsigned iVertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(iVertexShader, 1, &m_szVertexShader, nullptr);
+	glShaderSource(iVertexShader, 1, &szVertexShader, nullptr);
 	glCompileShader(iVertexShader);
 
 	int iSuccess = 0;
@@ -29,7 +32,7 @@ const int CMaterial::Initialize(void)
 
 	//Fragment Shader
 	unsigned iFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(iFragmentShader, 1, &m_szFragmentShader, nullptr);
+	glShaderSource(iFragmentShader, 1, &szFragmentShader, nullptr);
 	glCompileShader(iFragmentShader);
 	glGetShaderiv(iFragmentShader, GL_COMPILE_STATUS, &iSuccess);
 
