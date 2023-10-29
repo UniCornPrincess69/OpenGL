@@ -3,6 +3,8 @@
 
 #include "Object.h"
 #include "Variables.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class CCamera : IObject
 {
@@ -24,6 +26,8 @@ private:
 	int m_iWidth = 0;
 	int m_iHeight = 0;
 
+	glm::mat4x4 m_view = {};
+	glm::mat4x4 m_projection = {};
 	glm::vec3 m_position = {};
 	glm::vec3 m_orientation = {};
 	glm::vec3 m_up = {};

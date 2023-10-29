@@ -16,6 +16,9 @@
     <Filter Include="Resource Files\Shader">
       <UniqueIdentifier>{eede6b4e-cb68-4cc9-9a4d-11e67aeb7ced}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{5eadf9e6-8100-4360-aa5a-7b8b2f8ffa99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -39,10 +42,13 @@
     <ClCompile Include="DataManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ambient.cpp">
+    <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,13 +80,13 @@
     <ClInclude Include="DataManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Ambient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Variables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -97,5 +103,22 @@
     <None Include="Resource Files\Shader\AmbientFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
+    <None Include="Resource Files\Shader\PhongFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\PhongVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="BlinnPhongVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="BlinnPhongFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Textures\default_64x64_f1.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

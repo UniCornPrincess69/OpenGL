@@ -14,8 +14,9 @@ public:
 		m_szFragmentShader = m_pDataManager->ReadFile(a_szFragmentShader);
 
 	}
-public:
-	unsigned* GetShaderProgram(void) { return m_pShaderProgram; }
+
+	void AddUniformVector3(std::string a_sName, float a_fR, float a_fG, float a_fB);
+	inline unsigned* GetShaderProgram(void) { return m_pShaderProgram; }
 
 public:
 	// Inherited via IObject

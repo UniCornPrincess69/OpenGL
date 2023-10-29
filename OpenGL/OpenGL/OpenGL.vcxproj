@@ -133,7 +133,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Ambient.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -141,10 +140,11 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="stb.cpp" />
     <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ambient.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="Defines.h" />
@@ -152,16 +152,24 @@
     <ClInclude Include="ErrorType.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Variables.h" />
     <ClInclude Include="Viewport.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BlinnPhongVertex.glsl" />
+    <None Include="BlinnPhongFragment.glsl" />
     <None Include="Resource Files\Shader\AmbientFragment.glsl" />
     <None Include="Resource Files\Shader\AmbientVertex.glsl" />
     <None Include="Resource Files\Shader\DefaultFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultVertex.glsl" />
+    <None Include="Resource Files\Shader\PhongFragment.glsl" />
+    <None Include="Resource Files\Shader\PhongVertex.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Textures\default_64x64_f1.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

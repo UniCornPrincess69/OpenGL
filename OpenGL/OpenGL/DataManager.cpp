@@ -10,7 +10,7 @@ std::string CDataManager::ReadFile(const char* a_sFilePath)
 
     if (!stream.is_open())
     {
-        m_error = ErrorType::ET_FILE_READ_FAILED;
+        m_error = E_ERROR_TYPE::ET_FILE_READ_FAILED;
         std::cout << "Error: The file " << a_sFilePath << "could not be read!" << std::endl;
         return "";
     }
@@ -28,7 +28,7 @@ std::string CDataManager::ReadFile(const char* a_sFilePath)
 
     if (stream.is_open())
     {
-        m_error = ErrorType::ET_STREAM_STILL_OPEN;
+        m_error = E_ERROR_TYPE::ET_STREAM_STILL_OPEN;
         std::cout << "Error: The Filestream is still open" << std::endl;
     }
     

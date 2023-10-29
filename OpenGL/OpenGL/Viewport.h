@@ -27,6 +27,11 @@ public:
 	}
 	inline GLFWwindow* GetWindow(void) { return m_pWindow; }
 
+	void SetWInput(std::function<void(void)> a_pInputW);
+	void SetAInput(std::function<void(void)> a_pInputA);
+	void SetSInput(std::function<void(void)> a_pInputS);
+	void SetDInput(std::function<void(void)> a_pInputD);
+
 	// Inherited via IObject
 	virtual const int Initialize(void) override;
 	virtual const int Update(void) override;
@@ -36,12 +41,9 @@ public:
 
 private:
 	GLFWwindow* m_pWindow = nullptr;
-	ErrorType m_error = ErrorType::ET_SUCCESS;
+	E_ERROR_TYPE m_error = E_ERROR_TYPE::ET_SUCCESS;
 
-	std::function<void(void)> m_pInputW = nullptr;
-	std::function<void(void)> m_pInputA = nullptr;
-	std::function<void(void)> m_pInputS = nullptr;
-	std::function<void(void)> m_pInputD = nullptr;
+	
 	
 
 	int m_iWidth = 0;

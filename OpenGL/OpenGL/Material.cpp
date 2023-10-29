@@ -6,6 +6,13 @@
 
 
 
+void CMaterial::AddUniformVector3(std::string a_sName, float a_fR, float a_fG, float a_fB)
+{
+	GLuint iLocation = glGetUniformLocation((GLuint)*GetShaderProgram(), a_sName.c_str());
+
+	glUniform3f(iLocation, a_fR, a_fG, a_fB);
+}
+
 const int CMaterial::Initialize(void)
 {
 	//Material
@@ -27,7 +34,7 @@ const int CMaterial::Initialize(void)
 	{
 		glGetShaderInfoLog(iVertexShader, 512, nullptr, sInfoLog);
 		std::cout << "Error: Vertex-Shader Compilation failed!" << std::endl;
-		return static_cast<int>(ErrorType::ET_VERTEX_SHADER_COMPILATION_FAILED);
+		return static_cast<int>(E_ERROR_TYPE::ET_VERTEX_SHADER_COMPILATION_FAILED);
 	}
 
 	//Fragment Shader
@@ -40,7 +47,7 @@ const int CMaterial::Initialize(void)
 	{
 		glGetShaderInfoLog(iFragmentShader, 512, nullptr, sInfoLog);
 		std::cout << "Error: Fragment-Shader Compilation failed!" << std::endl;
-		return static_cast<int>(ErrorType::ET_FRAGMENT_SHADER_COMPILATION_FAILED);
+		return static_cast<int>(E_ERROR_TYPE::ET_FRAGMENT_SHADER_COMPILATION_FAILED);
 	}
 
 	//Link Shaders
@@ -54,7 +61,7 @@ const int CMaterial::Initialize(void)
 	{
 		glGetProgramInfoLog(*m_pShaderProgram, 512, nullptr, sInfoLog);
 		std::cout << "Error: Shader Program Link failed!" << std::endl;
-		return static_cast<int>(ErrorType::ET_SHADER_PROGRAM_LINK_FAILED);
+		return static_cast<int>(E_ERROR_TYPE::ET_SHADER_PROGRAM_LINK_FAILED);
 	}
 
 	glDeleteShader(iVertexShader);

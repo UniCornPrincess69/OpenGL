@@ -1,7 +1,7 @@
 #ifndef ERROR_TYPE_H
 #define ERROR_TYPE_H
 
-enum class ErrorType : char
+enum class E_ERROR_TYPE : char
 {
 	ET_SUCCESS = 0,
 	ET_WINDOW_CREATION_FAILED,
@@ -12,6 +12,8 @@ enum class ErrorType : char
 	ET_FILE_READ_FAILED,
 	ET_STREAM_STILL_OPEN,
 	ET_DATA_MANAGER_INIT_FAILED,
+	ET_FAILED_LOAD_TEXTURE,
+	ET_ASSIMP_MESH_FAILED_READING_FILE,
 	ET_COUNT
 
 };
