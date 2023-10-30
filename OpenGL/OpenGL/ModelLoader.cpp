@@ -59,7 +59,7 @@ const aiScene* CModelLoader::LoadMesh(const std::string& a_sPath)
         m_error = E_ERROR_TYPE::ET_ASSIMP_MESH_FAILED_READING_FILE;
         return nullptr;
     }
-    return nullptr;
+    return pScene;
 }
 
 const std::vector<Texture> CModelLoader::LoadMaterialTexture(aiMaterial* a_pMat, aiTextureType a_type, std::string a_sType, std::string a_sDir)

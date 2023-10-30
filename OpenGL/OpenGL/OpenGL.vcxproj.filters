@@ -112,7 +112,7 @@
     <None Include="BlinnPhongVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="BlinnPhongFragment.glsl">
+    <None Include="Resource Files\Shader\BlinnPhongFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
   </ItemGroup>

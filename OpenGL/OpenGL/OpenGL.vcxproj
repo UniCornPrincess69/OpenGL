@@ -160,9 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BlinnPhongVertex.glsl" />
-    <None Include="BlinnPhongFragment.glsl" />
     <None Include="Resource Files\Shader\AmbientFragment.glsl" />
     <None Include="Resource Files\Shader\AmbientVertex.glsl" />
+    <None Include="Resource Files\Shader\BlinnPhongFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultVertex.glsl" />
     <None Include="Resource Files\Shader\PhongFragment.glsl" />

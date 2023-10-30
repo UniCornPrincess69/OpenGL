@@ -47,7 +47,7 @@ private:
 	const char* M_S_NAME = "Unicorn Engine";
 	const char* M_S_CAM_NAME = "camMatrix";
 	const char* M_S_AMBIENT = "ambientVec";
-	const char* M_S_MESH_PATH = "Resource Files\Models\TreasureChest.obj";
+	const char* M_S_MESH_PATH = "Resource Files\Model\eyeball.obj";
 
 
 	std::vector<Vertex> m_vertices = std::vector<Vertex>{
