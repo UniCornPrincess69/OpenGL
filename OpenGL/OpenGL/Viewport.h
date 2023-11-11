@@ -5,6 +5,8 @@
 #include "GLFW/glfw3.h"
 #include "Object.h"
 #include "ErrorType.h"
+#include "Variables.h"
+#include <vector>
 #include <string>
 #include <functional>
 

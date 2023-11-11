@@ -48,7 +48,10 @@
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ModelLoader.cpp">
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,7 +89,10 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModelLoader.h">
+    <ClInclude Include="Pyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -103,21 +109,48 @@
     <None Include="Resource Files\Shader\AmbientFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="Resource Files\Shader\PhongFragment.glsl">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
-    <None Include="Resource Files\Shader\PhongVertex.glsl">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
     <None Include="BlinnPhongVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
     <None Include="Resource Files\Shader\BlinnPhongFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
+    <None Include="Resource Files\Shader\SkyboxFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\SkyboxVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\GlitterFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\GlitterVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Textures\default_64x64_f1.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\back.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\down.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\front.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\left.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\right.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\up.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\PyramidTex.jpg">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

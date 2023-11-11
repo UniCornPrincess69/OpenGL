@@ -28,6 +28,7 @@ private:
 
 	glm::mat4x4 m_view = {};
 	glm::mat4x4 m_projection = {};
+	glm::mat4x4 m_model = {};
 	glm::vec3 m_position = {};
 	glm::vec3 m_orientation = {};
 	glm::vec3 m_up = {};

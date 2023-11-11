@@ -33,11 +33,11 @@ const int CMesh::InitTextures(void)
 		glGenTextures(1, &m_textures[i].iID);
 		glBindTexture(GL_TEXTURE_2D, m_textures[i].iID);
 
-		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		stbi_set_flip_vertically_on_load(true);
 
@@ -104,8 +104,8 @@ const int CMesh::Initialize(void)
 	InitVertices();
 
 	//glBindBuffer(GL_ARRAY_BUFFER, 0);
-	if (m_textures.size() == 0) return static_cast<int>(E_ERROR_TYPE::ET_SUCCESS);
-	else return InitTextures();
+	/*if (m_textures.size() == 0) return static_cast<int>(E_ERROR_TYPE::ET_SUCCESS);
+	else return InitTextures();*/
     
     return 0;
 }
@@ -137,6 +137,8 @@ const int CMesh::Draw(void)
 	
 	glBindVertexArray(*m_pVBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *m_pEBO);
+
+
 
 	glDrawArrays(GL_TRIANGLES, M_I_POSITION_IDX, m_vertices.size());
 	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)M_I_EMPTY);

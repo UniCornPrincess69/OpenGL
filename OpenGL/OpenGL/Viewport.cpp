@@ -76,6 +76,7 @@ const int CViewport::Initialize(void)
 	glfwMakeContextCurrent(m_pWindow);
 	glfwSetFramebufferSizeCallback(m_pWindow, HandleFramebufferSize);
 
+
 	//GLAD
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	{
@@ -84,6 +85,7 @@ const int CViewport::Initialize(void)
 		return static_cast<int>(m_error);
 	}
 	
+	glEnable(GL_DEPTH_TEST);
 	return static_cast<int>(m_error);
 }
 
@@ -96,7 +98,7 @@ const int CViewport::Update(void)
 const int CViewport::Draw(void)
 {
 	glClearColor(m_fRed, m_fGreen, m_fBlue, m_fAlpha);
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	
 	return static_cast<int>(m_error);

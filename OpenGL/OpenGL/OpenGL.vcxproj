@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -140,7 +140,8 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
-    <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="Pyramid.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="stb.cpp" />
     <ClCompile Include="Viewport.cpp" />
   </ItemGroup>
@@ -152,8 +153,9 @@
     <ClInclude Include="ErrorType.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
-    <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="Pyramid.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Variables.h" />
     <ClInclude Include="Viewport.h" />
@@ -165,11 +167,20 @@
     <None Include="Resource Files\Shader\BlinnPhongFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultVertex.glsl" />
-    <None Include="Resource Files\Shader\PhongFragment.glsl" />
-    <None Include="Resource Files\Shader\PhongVertex.glsl" />
+    <None Include="Resource Files\Shader\GlitterFragment.glsl" />
+    <None Include="Resource Files\Shader\GlitterVertex.glsl" />
+    <None Include="Resource Files\Shader\SkyboxFragment.glsl" />
+    <None Include="Resource Files\Shader\SkyboxVertex.glsl" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Resource Files\Textures\back.jpg" />
     <Image Include="Resource Files\Textures\default_64x64_f1.jpg" />
+    <Image Include="Resource Files\Textures\down.jpg" />
+    <Image Include="Resource Files\Textures\front.jpg" />
+    <Image Include="Resource Files\Textures\left.jpg" />
+    <Image Include="Resource Files\Textures\PyramidTex.jpg" />
+    <Image Include="Resource Files\Textures\right.jpg" />
+    <Image Include="Resource Files\Textures\up.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
