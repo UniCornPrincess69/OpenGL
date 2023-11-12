@@ -167,10 +167,12 @@
     <None Include="Resource Files\Shader\BlinnPhongFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultVertex.glsl" />
+    <None Include="Resource Files\Shader\FragmentShader.glsl" />
     <None Include="Resource Files\Shader\GlitterFragment.glsl" />
     <None Include="Resource Files\Shader\GlitterVertex.glsl" />
     <None Include="Resource Files\Shader\SkyboxFragment.glsl" />
     <None Include="Resource Files\Shader\SkyboxVertex.glsl" />
+    <None Include="Resource Files\Shader\VertexShader.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Textures\back.jpg" />
@@ -178,6 +180,7 @@
     <Image Include="Resource Files\Textures\down.jpg" />
     <Image Include="Resource Files\Textures\front.jpg" />
     <Image Include="Resource Files\Textures\left.jpg" />
+    <Image Include="Resource Files\Textures\NormalMap.jpg" />
     <Image Include="Resource Files\Textures\PyramidTex.jpg" />
     <Image Include="Resource Files\Textures\right.jpg" />
     <Image Include="Resource Files\Textures\up.jpg" />

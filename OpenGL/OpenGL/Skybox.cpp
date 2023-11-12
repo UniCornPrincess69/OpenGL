@@ -5,7 +5,7 @@
 
 const int CSkybox::InitCubeMap(void)
 {
-
+	//TODO: Access violation wenn auf Bilder bzw. ID zugegriffen werden soll.
 	int iWidth, iHeight, iChannelNo;
 	for (unsigned i = 0; i < m_texture.size(); i++)
 	{

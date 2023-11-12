@@ -35,8 +35,8 @@ private:
 	const int M_I_WIDTH = 640;
 	const int M_I_HEIGHT = 480;
 
-	const float M_F_RED = 0.949f;
-	const float M_F_GREEN = 0.298f;
+	const float M_F_RED = 0.533f;
+	const float M_F_GREEN = 0.788f;
 	const float M_F_BLUE = 1.0f;
 	const float M_F_ALPHA = 1.0f;
 	const float M_F_FOV_DEGREE = 0.45f;
@@ -46,14 +46,26 @@ private:
 	const char* M_S_NAME = "Unicorn Engine";
 	const char* M_S_CAM_NAME = "camMatrix";
 	const char* M_S_AMBIENT = "ambientVec";
-	const char* M_S_MESH_PATH = "Resource Files\Model\eyeball.obj";
+
+	const char* M_S_VERTEX_PATH = "Resource Files/Shader/VertexShader.glsl";
+	const char* M_S_FRAGMENT_PATH = "Resource Files/Shader/FragmentShader.glsl";
 
 
 	
 
 
 	std::vector<Texture> m_texture = {
-		Texture{0,"2D", "Resource Files/Textures/PyramidTex.jpg"}
+		Texture{0,"2D", "Resource Files/Textures/PyramidTex.jpg"},
+		Texture{1,"Normal", "Resource Files/Textures/NormalMap.jpg"}
+	};
+
+	std::vector<Texture> m_skyTexture = {
+		Texture{0, "UP", "Resource Files/Textures/up.jpg"},
+		Texture{1, "DOWN", "Resource Files/Textures/down.jpg"},
+		Texture{2, "FRONT", "Resource Files/Textures/front.jpg"},
+		Texture{3, "BACK", "Resource Files/Textures/back.jpg"},
+		Texture{4, "RIGHT", "Resource Files/Textures/right.jpg"},
+		Texture{5, "LEFT", "Resource Files/Textures/left.jpg"}
 	};
 
 
@@ -62,7 +74,7 @@ private:
 	Pyramid* m_pPyramid = nullptr;
 	CSkybox* m_pSkybox = nullptr;
 	CViewport* m_pViewport = nullptr;
-	CMaterial* m_pBlinn = nullptr;
+	CMaterial* m_pMaterial = nullptr;
 	CMesh* m_pMesh = nullptr;
 	CCamera* m_pCamera = nullptr;
 	std::string m_sTextureDir = "";

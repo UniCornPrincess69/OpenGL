@@ -29,6 +29,8 @@ const int CCamera::Draw(void)
     glUniformMatrix4fv(glGetUniformLocation(*m_data.pShaderID, "projection"), 1, GL_FALSE, glm::value_ptr(m_projection));
     glUniformMatrix4fv(glGetUniformLocation(*m_data.pShaderID, "view"), 1, GL_FALSE, glm::value_ptr(m_view));
     glUniformMatrix4fv(glGetUniformLocation(*m_data.pShaderID, "model"), 1, GL_FALSE, glm::value_ptr(m_model));
+    float time = glfwGetTime();
+    glUniform1f(glGetUniformLocation(*m_data.pShaderID, "time"), time);
     return 0;
 }
 

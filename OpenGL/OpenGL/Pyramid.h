@@ -14,9 +14,9 @@ public:
 
 	inline std::vector<Vertex> GetVertices() { return m_vertices; }
 	inline std::vector<unsigned> GetIndices() { return m_indices; }
+	void CalculateNTB(void);
 
 private:
-	void CalculateNTB(void);
 
 
 	const int M_I_ONE = 1;

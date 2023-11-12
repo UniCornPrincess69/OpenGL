@@ -8,6 +8,7 @@
 
 
 
+
 std::vector<Vertex> CMesh::TranslateVertices(std::vector<Vertex> a_vertices, Transform* a_pTrans)
 {
 	if (a_pTrans == nullptr) return a_vertices;
@@ -28,6 +29,8 @@ std::vector<Vertex> CMesh::TranslateVertices(std::vector<Vertex> a_vertices, Tra
 const int CMesh::InitTextures(void)
 {
 	int iWidth = 0, iHeight = 0, iChannelNum = 0;
+	glUniform1i(glGetUniformLocation(*m_pMaterial->GetShaderProgram(), "PyramidTexture"), 0);
+	glUniform1i(glGetUniformLocation(*m_pMaterial->GetShaderProgram(), "NormalMap"), 1);
 	for (int i = 0; i < m_textures.size(); i++)
 	{
 		glGenTextures(1, &m_textures[i].iID);
@@ -88,6 +91,12 @@ void CMesh::InitVertices(void)
 
 	glVertexAttribPointer(M_I_NORMAL_IDX, GetNormalCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize()));
 	glEnableVertexAttribArray(M_I_NORMAL_IDX);
+
+	glVertexAttribPointer(M_I_BINORMAL_IDX, GetBiNormalCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize() + GetNormalSize()));
+	glEnableVertexAttribArray(M_I_BINORMAL_IDX);
+
+	glVertexAttribPointer(M_I_TANGENT_IDX, GetTangentCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize() + GetNormalSize() + GetBiNormalSize()));
+	glEnableVertexAttribArray(M_I_TANGENT_IDX);
 }
 
 void CMesh::SetTransform(Transform& a_trans)
@@ -98,14 +107,14 @@ void CMesh::SetTransform(Transform& a_trans)
 
 const int CMesh::Initialize(void)
 {
-
+	m_model = glm::mat4x4(1.0f);
+	
 	InitBuffers();
 
 	InitVertices();
 
-	//glBindBuffer(GL_ARRAY_BUFFER, 0);
-	/*if (m_textures.size() == 0) return static_cast<int>(E_ERROR_TYPE::ET_SUCCESS);
-	else return InitTextures();*/
+	if (m_textures.size() == 0) return static_cast<int>(E_ERROR_TYPE::ET_SUCCESS);
+	else return InitTextures();
     
     return 0;
 }
@@ -137,8 +146,6 @@ const int CMesh::Draw(void)
 	
 	glBindVertexArray(*m_pVBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *m_pEBO);
-
-
 
 	glDrawArrays(GL_TRIANGLES, M_I_POSITION_IDX, m_vertices.size());
 	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)M_I_EMPTY);

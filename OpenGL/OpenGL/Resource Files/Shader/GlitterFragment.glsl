@@ -8,13 +8,13 @@ in vec3 vertexColor;
 in vec3 lightNormal;
 in vec3 lightOutputPos;
 
-uniform sampler2D myTexture;
+uniform sampler2D PyramidTexture;
 uniform vec3 lightVec;
 uniform vec3 objectVec;
 
 void main()
 {
-	vec4 baseColor = vec4(vertexColor, 1.0);
+	vec4 baseColor = texture(PyramidTexture, texCoord) * vec4(vertexColor, 1.0);
 
 	float randomValue = fract(sin(dot(texCoord.xy, vec2(10, 90))) * 20000);
 

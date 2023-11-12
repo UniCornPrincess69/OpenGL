@@ -5,6 +5,8 @@
 #include "Variables.h"
 #include <vector>
 #include "Material.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class CMesh : public IObject
 {
@@ -19,11 +21,15 @@ private:
 	inline constexpr const int GetColorSize(void) const { return sizeof(glm::vec3); }
 	inline constexpr const int GetTexCoordSize(void) const { return sizeof(glm::vec2); }
 	inline constexpr const int GetNormalSize(void) const { return sizeof(glm::vec3); }
+	inline constexpr const int GetBiNormalSize(void) const { return sizeof(glm::vec3); }
+	inline constexpr const int GetTangentSize(void) const { return sizeof(glm::vec3); }
 
 	inline constexpr const int GetPositionNum(void) const { return GetPositionSize() / sizeof(float); }
 	inline constexpr const int GetColorNum(void) const { return GetColorSize() / sizeof(float); }
 	inline constexpr const int GetUVCoordNum(void) const { return GetTexCoordSize() / sizeof(float); }
 	inline constexpr const int GetNormalCoordNum(void) const { return GetNormalSize() / sizeof(float); }
+	inline constexpr const int GetBiNormalCoordNum(void) const { return GetBiNormalSize() / sizeof(float); }
+	inline constexpr const int GetTangentCoordNum(void) const { return GetTangentSize() / sizeof(float); }
 
 
 	std::vector<Vertex> TranslateVertices(std::vector<Vertex> a_vertices, Transform* a_pTrans);
@@ -54,6 +60,8 @@ private:
 	const int M_I_BUFFER_SIZE = 1;
 	const int M_I_UV_COORD_IDX = 2;
 	const int M_I_NORMAL_IDX = 3;
+	const int M_I_BINORMAL_IDX = 4;
+	const int M_I_TANGENT_IDX = 5;
 
 	unsigned* m_pVBO = nullptr;
 	unsigned* m_pEBO = nullptr;
@@ -61,6 +69,7 @@ private:
 	std::vector<Vertex> m_vertices = {};
 	std::vector<unsigned> m_indices = {};
 	std::vector<Texture> m_textures = {};
+	glm::mat4x4 m_model = {};
 
 	CMaterial* m_pMaterial = nullptr;
 	Transform* m_pTransform = nullptr;

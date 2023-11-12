@@ -127,6 +127,12 @@
     <None Include="Resource Files\Shader\GlitterVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
+    <None Include="Resource Files\Shader\FragmentShader.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\VertexShader.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Textures\default_64x64_f1.jpg">
@@ -151,6 +157,9 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="Resource Files\Textures\PyramidTex.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Resource Files\Textures\NormalMap.jpg">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>
