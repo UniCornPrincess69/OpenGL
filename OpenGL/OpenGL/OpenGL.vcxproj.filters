@@ -103,18 +103,6 @@
     <None Include="Resource Files\Shader\DefaultFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="Resource Files\Shader\AmbientVertex.glsl">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
-    <None Include="Resource Files\Shader\AmbientFragment.glsl">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
-    <None Include="BlinnPhongVertex.glsl">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
-    <None Include="Resource Files\Shader\BlinnPhongFragment.glsl">
-      <Filter>Resource Files\Shader</Filter>
-    </None>
     <None Include="Resource Files\Shader\SkyboxFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>

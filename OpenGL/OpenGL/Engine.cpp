@@ -2,18 +2,18 @@
 #include <iostream>
 
 
-
-
 void CEngine::Awake(void)
 {
 }
 
 int CEngine::Initialize(void)
 {
+
+	
 	if (m_pPyramid == nullptr) m_pPyramid = new Pyramid();
 	//if (m_pSkybox == nullptr) m_pSkybox = new CSkybox(m_pDataManager, m_skyTexture);
 
-	if (m_pCamera == nullptr) m_pCamera = new CCamera(M_I_WIDTH, M_I_HEIGHT, glm::vec3(0.0f, 0.0f, 350.0f), glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	if (m_pCamera == nullptr) m_pCamera = new CCamera(M_I_WIDTH, M_I_HEIGHT, M_CAMERA_POS, M_CAMERA_ORIENT, M_CAMERA_UP);
 
 	if (m_pViewport == nullptr) m_pViewport = new CViewport(M_I_WIDTH, M_I_HEIGHT, M_I_MINOR, M_I_MAJOR, M_S_NAME, M_F_RED, M_F_GREEN, M_F_BLUE, M_F_ALPHA);
 	if (m_pMaterial == nullptr) m_pMaterial = new CMaterial(m_pDataManager, M_S_VERTEX_PATH, M_S_FRAGMENT_PATH);
@@ -22,10 +22,10 @@ int CEngine::Initialize(void)
 
 	if (m_pViewport != nullptr && m_pCamera != nullptr)
 	{
-		m_pViewport->SetWInput([&](void) {m_pCamera->TranslatePosition(glm::vec3(0.0f, 0.0f, -1.0f)); });
-		m_pViewport->SetAInput([&](void) {m_pCamera->TranslatePosition(glm::vec3(-0.1f, 0.0f, 0.0f)); });
-		m_pViewport->SetSInput([&](void) {m_pCamera->TranslatePosition(glm::vec3(0.0f, 0.0f, 1.0f)); });
-		m_pViewport->SetDInput([&](void) {m_pCamera->TranslatePosition(glm::vec3(0.1f, 0.0f, 0.0f)); });
+		m_pViewport->SetWInput([&](void) {m_pCamera->TranslatePosition(M_FORWARD); });
+		m_pViewport->SetAInput([&](void) {m_pCamera->TranslatePosition(M_LEFT); });
+		m_pViewport->SetSInput([&](void) {m_pCamera->TranslatePosition(M_BACKWARD); });
+		m_pViewport->SetDInput([&](void) {m_pCamera->TranslatePosition(M_RIGHT); });
 	}
 	
 	//if (m_pSkybox != nullptr) PROVE_RESULT(m_pSkybox->Initialize());
@@ -52,9 +52,9 @@ int CEngine::Run(void)
 
 		if (m_pCamera != nullptr) PROVE_RESULT(m_pCamera->Draw());
 		if (m_pViewport != nullptr) PROVE_RESULT(m_pViewport->Draw());
-		if (m_pMaterial != nullptr) m_pMaterial->AddUniformVector3("lightPos", 0.0f, -100.0f, 0.0f);
-		if (m_pMaterial != nullptr) m_pMaterial->AddUniformVector3("lightVec", 15.0f, 15.0f, 15.0f);
-		if (m_pMaterial != nullptr) m_pMaterial->AddUniformVector3("objectVec", 1.0f, 0.5f, 0.31f);
+		if (m_pMaterial != nullptr) m_pMaterial->AddUniformVector3(M_S_LIGHTPOS, M_F_LIGHT_POS_X, M_F_LIGHT_POS_Y, M_F_LIGHT_POS_Z);
+		if (m_pMaterial != nullptr) m_pMaterial->AddUniformVector3(M_S_LIGHTVEC, M_F_LIGHT_VEC_X, M_F_LIGHT_VEC_Y, M_F_LIGHT_VEC_Z);
+		if (m_pMaterial != nullptr) m_pMaterial->AddUniformVector3(M_S_OBJECT_VEC, M_F_OBJECT_VEC_X, M_F_OBJECT_VEC_Y, M_F_OBJECT_VEC_Z);
 		if (m_pMaterial != nullptr) PROVE_RESULT(m_pMaterial->Draw());
 		//if (m_pSkybox != nullptr) PROVE_RESULT(m_pSkybox->Draw());
 		if (m_pMesh != nullptr) PROVE_RESULT(m_pMesh->Draw());

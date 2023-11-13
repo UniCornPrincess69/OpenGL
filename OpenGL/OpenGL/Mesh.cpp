@@ -33,8 +33,8 @@ const int CMesh::InitTextures(void)
 	glUniform1i(glGetUniformLocation(*m_pMaterial->GetShaderProgram(), "NormalMap"), 1);
 	for (int i = 0; i < m_textures.size(); i++)
 	{
-		glGenTextures(1, &m_textures[i].iID);
-		glBindTexture(GL_TEXTURE_2D, m_textures[i].iID);
+		glGenTextures(1, m_textures[i].iID);
+		glBindTexture(GL_TEXTURE_2D, *m_textures[i].iID);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
@@ -83,19 +83,24 @@ void CMesh::InitVertices(void)
 	glVertexAttribPointer(M_I_POSITION_IDX, GetPositionNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY));
 	glEnableVertexAttribArray(M_I_POSITION_IDX);
 
-	glVertexAttribPointer(M_I_COLOR_IDX, GetColorNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize()));
+	glVertexAttribPointer(M_I_COLOR_IDX, GetColorNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), 
+		reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize()));
 	glEnableVertexAttribArray(M_I_COLOR_IDX);
 
-	glVertexAttribPointer(M_I_UV_COORD_IDX, GetUVCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize()));
+	glVertexAttribPointer(M_I_UV_COORD_IDX, GetUVCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), 
+		reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize()));
 	glEnableVertexAttribArray(M_I_UV_COORD_IDX);
 
-	glVertexAttribPointer(M_I_NORMAL_IDX, GetNormalCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize()));
+	glVertexAttribPointer(M_I_NORMAL_IDX, GetNormalCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), 
+		reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize()));
 	glEnableVertexAttribArray(M_I_NORMAL_IDX);
 
-	glVertexAttribPointer(M_I_BINORMAL_IDX, GetBiNormalCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize() + GetNormalSize()));
+	glVertexAttribPointer(M_I_BINORMAL_IDX, GetBiNormalCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), 
+		reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize() + GetNormalSize()));
 	glEnableVertexAttribArray(M_I_BINORMAL_IDX);
 
-	glVertexAttribPointer(M_I_TANGENT_IDX, GetTangentCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize() + GetNormalSize() + GetBiNormalSize()));
+	glVertexAttribPointer(M_I_TANGENT_IDX, GetTangentCoordNum(), GL_FLOAT, GL_FALSE, sizeof(Vertex), 
+		reinterpret_cast<void*>(M_I_EMPTY + GetPositionSize() + GetColorSize() + GetTexCoordSize() + GetNormalSize() + GetBiNormalSize()));
 	glEnableVertexAttribArray(M_I_TANGENT_IDX);
 }
 
@@ -107,7 +112,6 @@ void CMesh::SetTransform(Transform& a_trans)
 
 const int CMesh::Initialize(void)
 {
-	m_model = glm::mat4x4(1.0f);
 	
 	InitBuffers();
 
@@ -141,7 +145,7 @@ const int CMesh::Draw(void)
 		GLint location = glGetUniformLocation((GLuint)*m_pMaterial->GetShaderProgram(), (sName + sNumb).c_str());
 		glUniform1i(location, i);
 
-		glBindTexture(GL_TEXTURE_2D, m_textures[i].iID);
+		glBindTexture(GL_TEXTURE_2D, *m_textures[i].iID);
 	}
 	
 	glBindVertexArray(*m_pVBO);

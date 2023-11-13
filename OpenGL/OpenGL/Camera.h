@@ -23,6 +23,14 @@ public:
 	virtual void Finalize(void) override;
 
 private:
+	const float M_F_ONE = 1.0f;
+	const float M_F_HALF = 0.5f;
+	const glm::vec3 M_ROT_AXIS = glm::vec3(0.5f, 1.0f, 0.0f);
+	const char* M_S_VIEW = "view";
+	const char* M_S_PROJECTION = "projection";
+	const char* M_S_MODEL = "model";
+	const char* M_S_TIME = "time";
+
 	int m_iWidth = 0;
 	int m_iHeight = 0;
 

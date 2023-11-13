@@ -23,24 +23,27 @@ void main()
     vec2 coord = texCoord;
     vec3 color = vec3(0.0);
 
-    float angle = atan(-coord.y + 0.25, coord.x - 0.5) * 0.1;
+    float angle = atan(-coord.y + 0.2, coord.x - 0.5) * 0.1;
     float len = length(coord - vec2(0.5, 0.25));
 
-    color.r += sin(len * 40.0 + angle * 40.0 + time);
-    color.g += cos(len * 30.0 + angle * 60.0 - time);
+    color.r += sin(len * 40.0 + angle * 40.0 + (time * 10));
+    color.g += cos(len * 30.0 + angle * 60.0 - (time * 10));
     color.b += sin(len * 50.0 + angle * 50.0 + 3.0);
 
     vec3 normalMapTex = texture(NormalMap, texCoord).rgb * 0.5;
     vec3 normalMapNormal = normalize(normalMapTex * 2.0 - 1.0);
 
-    vec4 textureColor = texture(PyramidTexture, texCoord) * 0.5;
+    vec4 textureColor = texture(PyramidTexture, texCoord) * 10;
 
     mat3 TBN = mat3(lightTangent, lightBiNormal, lightNormal);
     vec3 normal = normalize(TBN * normalMapNormal);
 
     vec3 lightDir = normalize(lightOutputPos - fragPos);
-    float diff = max(dot(normal, lightVec), 0.0);
-    vec4 diffuse = diff * textureColor * vec4(objectVec, 1.0);
+    FragColor = vec4(lightDir, 1);
+    float diff = max(dot(normal, lightDir), 0.05);
+    
+    vec3 normalLightVec = lightVec / 255;
+    vec4 diffuse = diff * textureColor * vec4(objectVec, 1.0) * vec4(normalLightVec, 1.0);
 
     FragColor = vec4(color, 1.0) * diffuse;
-}
+} 

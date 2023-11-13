@@ -5,12 +5,13 @@
 
 const int CSkybox::InitCubeMap(void)
 {
-	//TODO: Access violation wenn auf Bilder bzw. ID zugegriffen werden soll.
+	//TODO: Access violation wenn auf ID zugegriffen werden soll.
 	int iWidth, iHeight, iChannelNo;
 	for (unsigned i = 0; i < m_texture.size(); i++)
 	{
-		glGenTextures(1, &m_texture[i].iID);
-		glBindTexture(GL_TEXTURE_CUBE_MAP, m_texture[i].iID);
+		auto iID = m_texture[i].iID;
+		glGenTextures(1, iID);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, *iID);
 		unsigned char* pData = stbi_load(m_texture[i].sPath.c_str(), &iWidth, &iHeight, &iChannelNo, 0);
 		if (pData)
 		{

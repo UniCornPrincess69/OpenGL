@@ -12,8 +12,8 @@ public:
 		CalculateNTB();
 	}
 
-	inline std::vector<Vertex> GetVertices() { return m_vertices; }
-	inline std::vector<unsigned> GetIndices() { return m_indices; }
+	inline const std::vector<Vertex> GetVertices() { return m_vertices; }
+	inline const std::vector<unsigned> GetIndices() { return m_indices; }
 	void CalculateNTB(void);
 
 private:

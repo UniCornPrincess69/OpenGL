@@ -26,7 +26,7 @@ struct CameraData
 
 struct Texture
 {
-	unsigned iID;
+	unsigned* iID;
 	std::string sType;
 	std::string sPath;
 };
